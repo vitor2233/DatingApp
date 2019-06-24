@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DatingApp.API.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace DatingApp.API.Controllers
 {
+    [Authorize]
     // GET http://localhost:5000/api/values/5
     [Route("api/[controller]")]
     [ApiController]
@@ -32,6 +34,8 @@ namespace DatingApp.API.Controllers
 
         // GET api/values/5
         //Pegando algum dado especifico 
+        [AllowAnonymous]
+        //AllowAnonymous = qualquer um pode ir nessa url
         [HttpGet("{id}")]
         public async Task<IActionResult> GetValue(int id)
         {
