@@ -1,0 +1,18 @@
+<div class="container mt-5">
+  <div *ngIf="!registerMode" style="text-align: center">
+    <h1>Encontre seu par</h1>
+    <p class="lead">Faça o login para ver seus matches... Você só precisa de registrar!</p>
+    <div class="text-center">
+      <button class="btn btn-primary btn-lg mr-2" (click)="registerToggle()">Registrar</button>
+      <button class="btn btn-info btn-lg">Sobre</button>
+    </div>
+  </div>
+
+  <div *ngIf="registerMode" class="container">
+    <div class="row justify-content-center">
+      <div class="col-4">
+        <app-register [valuesFromHome]="values"></app-register>
+      </div>
+    </div>
+  </div>
+</div>
