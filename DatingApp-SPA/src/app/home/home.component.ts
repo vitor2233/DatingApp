@@ -8,27 +8,20 @@ import { HttpClient } from '@angular/common/http';
 })
 export class HomeComponent implements OnInit {
   registerMode = false;
-  values: any;
 
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
-    this.getValues();
   }
 
-  getValues() {
-    this.http.get('http://localhost:5000/api/values').subscribe(response => {
-      this.values = response;
-      console.log(this.values);
-    }, error => {
-      console.log(error);
-    });
-  }
-
-  /*Recebe o oposto para aparecer ou desaparecer*/
+  /*Recebe true para aparecer ou desaparecer*/
   registerToggle() {
-    this.registerMode = !this.registerMode;
-    return this.registerMode;
+    this.registerMode = true;
+  }
+
+  /* Cancelar e voltar para home */
+  cancelRegisterMode(registerMode: boolean) {
+    this.registerMode = registerMode;
   }
 
 }
