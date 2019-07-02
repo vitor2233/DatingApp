@@ -13,7 +13,7 @@ export class NavComponent implements OnInit {
   */
   model: any = {};
 
-  constructor(private authService: AuthService, private alertify: AlertifyService) { }
+  constructor(public authService: AuthService, private alertify: AlertifyService) { }
 
   ngOnInit() {
   }
@@ -26,15 +26,14 @@ export class NavComponent implements OnInit {
     });
   }
 
-  /* !! Irá retornar true ou false para verificar se existe o token */
+  /* Verificar se o token está expirado */
   loggedIn() {
-    const token = localStorage.getItem('token');
-    return !!token;
+    return this.authService.loggedIn();
   }
 
   logout() {
     localStorage.removeItem('token');
-    this.alertify.message('Volte sempre !');
+    this.alertify.message('Esperamos você de volta !');
   }
 
 }
