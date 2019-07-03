@@ -8,9 +8,7 @@ import { AlertifyService } from '../_services/alertify.service';
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent implements OnInit {
-  /*
-  * model irá guardar o nome e senha do usuário
-  */
+  /* model irá guardar o nome e senha do usuário */
   model: any = {};
 
   constructor(public authService: AuthService, private alertify: AlertifyService) { }
@@ -20,7 +18,7 @@ export class NavComponent implements OnInit {
 
   login() {
     this.authService.login(this.model).subscribe(next => {
-      this.alertify.success('Logado com sucesso');
+      this.alertify.success('Bem vindo ' + this.authService.decodedToken.unique_name);
     }, error => {
       this.alertify.error('Falha no login');
     });
