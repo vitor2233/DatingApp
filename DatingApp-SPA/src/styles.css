@@ -1,8 +1,9 @@
 /*
-    Chamar o bootstrap e font-awesome para a aplicação
+    Chamar o bootstrap, bootswatch e font-awesome para a aplicação
 */
 @import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 @import '../node_modules/font-awesome/css/font-awesome.min.css';
+@import '../node_modules/bootswatch/dist/pulse/bootstrap.min.css';
 /* css do alertifyjs */
 @import '../node_modules/alertifyjs/build/css/alertify.min.css';
 @import '../node_modules/alertifyjs/build/css/themes/bootstrap.min.css';
