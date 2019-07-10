@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../_services/auth.service';
 import { AlertifyService } from '../_services/alertify.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nav',
@@ -11,7 +12,7 @@ export class NavComponent implements OnInit {
   /* model irá guardar o nome e senha do usuário */
   model: any = {};
 
-  constructor(public authService: AuthService, private alertify: AlertifyService) { }
+  constructor(public authService: AuthService, private alertify: AlertifyService, private router: Router) { }
 
   ngOnInit() {
   }
@@ -20,7 +21,9 @@ export class NavComponent implements OnInit {
     this.authService.login(this.model).subscribe(next => {
       this.alertify.success('Bem vindo ' + this.authService.decodedToken.unique_name);
     }, error => {
-      this.alertify.error('Falha no login');
+      this.alertify.error('Usuário não encontrado');
+    }, () => {
+      this.router.navigate(['/matches']);
     });
   }
 
@@ -32,6 +35,7 @@ export class NavComponent implements OnInit {
   logout() {
     localStorage.removeItem('token');
     this.alertify.message('Esperamos você de volta !');
+    this.router.navigate(['/home']);
   }
 
 }
