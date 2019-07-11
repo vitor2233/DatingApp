@@ -7,10 +7,10 @@ namespace DatingApp.API.Dtos
     {
         //Obrigatório = required
         // [] Igual o type=phone, email, password do html
-        [Required]
+        [Required(ErrorMessage="Preencha o usuário")]
         public string Username { get; set; }
 
-        [Required]
+        [Required(ErrorMessage="Preencha a senha")]
         //Colocar máximo e minimo de letras
         [StringLength(8, MinimumLength = 4, ErrorMessage = "Senha deverá conter 4 a 8 caracteres")]
         public string Password { get; set; }

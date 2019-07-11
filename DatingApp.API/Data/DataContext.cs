@@ -10,5 +10,6 @@ namespace DatingApp.API.Data
         public DbSet<Value> Values { get; set; }
         //Value da classe Value, as colunas q adicionei
         public DbSet<User> Users { get; set; }
+        public DbSet<Photo> Photos { get; set; }
     }
 }

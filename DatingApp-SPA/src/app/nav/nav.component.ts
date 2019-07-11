@@ -22,6 +22,7 @@ export class NavComponent implements OnInit {
       this.alertify.success('Bem vindo ' + this.authService.decodedToken.unique_name);
     }, error => {
       this.alertify.error('Usuário não encontrado');
+      console.log(error);
     }, () => {
       this.router.navigate(['/matches']);
     });
