@@ -1,0 +1,59 @@
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="card">
+        <img
+          class="card-img-top img-thumbnail"
+          src="{{ user.photoUrl }}"
+          alt="{{ user.knowAs }}"
+        />
+        <div class="card-body">
+          <div>
+            <strong>Local:</strong>
+            <p>{{ user.city }}, {{ user.country }}</p>
+          </div>
+          <div>
+            <strong>Idade:</strong>
+            <P>{{ user.age }}</P>
+          </div>
+          <div>
+            <strong>Visto por último:</strong>
+            <P>{{ user.lastActive }}</P>
+          </div>
+          <div>
+            <strong>Membro desde:</strong>
+            <P>{{ user.created }}</P>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="btn-group d-flex">
+            <button class="btn btn-primary w-100 mr-1">Like</button>
+            <button class="btn btn-info w-100 ml-1">Mensagem</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-8">
+      <div class="tab-panel">
+        <tabset class="member-tabset">
+          <tab heading="Sobre {{ user.knowAs }}">
+            <h4>Descrição</h4>
+            <p>{{ user.introduction }}</p>
+            <h4>Procurando por</h4>
+            <p>{{ user.lookingFor }}</p>
+          </tab>
+          <tab heading="Interesses">
+            <h4>Interesses</h4>
+            <p>{{ user.interests }}</p>
+          </tab>
+          <tab heading="Fotos">
+            <p>Fotos aq</p>
+          </tab>
+          <tab heading="Mensagens">
+            <p>Mensagens aq</p>
+          </tab>
+        </tabset>
+      </div>
+    </div>
+  </div>
+</div>
