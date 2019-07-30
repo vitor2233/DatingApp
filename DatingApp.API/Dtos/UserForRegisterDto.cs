@@ -1,18 +1,38 @@
+	using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace DatingApp.API.Dtos
 {
-    //Esta classe irá pegar o objeto em JSON e transformar em 2 strings, username e password
     public class UserForRegisterDto
     {
-        //Obrigatório = required
-        // [] Igual o type=phone, email, password do html
-        [Required(ErrorMessage="Preencha o usuário")]
+        [Required]
         public string Username { get; set; }
 
-        [Required(ErrorMessage="Preencha a senha")]
-        //Colocar máximo e minimo de letras
-        [StringLength(8, MinimumLength = 4, ErrorMessage = "Senha deverá conter 4 a 8 caracteres")]
+        [Required]
+        [StringLength(8, MinimumLength = 4, ErrorMessage = "You must specify a password between 4 and 8 characters")]
         public string Password { get; set; }
+
+        [Required]
+        public string Gender { get; set; }
+
+        [Required]
+        public string KnownAs { get; set; }
+
+        [Required]
+        public DateTime DateOfBirth { get; set; }
+
+        [Required]
+        public string City { get; set; }
+
+        [Required]
+        public string Country { get; set; }
+        public DateTime Created { get; set; }
+        public DateTime LastActive { get; set; }
+
+        public UserForRegisterDto()
+        {
+            Created = DateTime.Now;
+            LastActive = DateTime.Now;
+        }
     }
 }

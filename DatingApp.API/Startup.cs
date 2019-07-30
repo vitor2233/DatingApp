@@ -45,6 +45,7 @@ namespace DatingApp.API
             services.AddTransient<Seed>();
             services.AddAutoMapper();
             services.AddCors();
+            services.Configure<CloudinarySettings>(Configuration.GetSection("CloudinarySettings"));
             services.AddScoped<IAuthRepository, AuthRepository>();
             services.AddScoped<IDatingRepository, DatingRepository>();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -89,8 +90,9 @@ namespace DatingApp.API
 
             //app.UseHttpsRedirection();
             //Validar quem for usar a api
-            //só usado uma vez para gerar os usuários fakes seeder.SeedUsers();
-            app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+            // Gerar users fakes = seeder.SeedUsers();
+            app.UseCors(x => x.WithOrigins("http://localhost:4200")
+                .AllowAnyHeader().AllowAnyMethod().AllowCredentials());
             app.UseAuthentication();
             app.UseMvc();
         }
