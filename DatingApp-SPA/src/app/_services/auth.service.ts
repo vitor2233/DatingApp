@@ -41,9 +41,9 @@ export class AuthService {
     );
   }
 
-  register(model: any) {
+  register(user: User) {
     /* Retornar a url da API para fazer o registro com o modelo */
-    return this.http.post(this.baseUrl + 'register', model);
+    return this.http.post(this.baseUrl + 'register', user);
   }
 
   /* Verificar se o token expirou com a livraria do GitHub instalada */
