@@ -6,11 +6,15 @@ using System.Threading.Tasks;
 using AutoMapper;
 using DatingApp.API.Data;
 using DatingApp.API.Dtos;
+using DatingApp.API.Helpers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DatingApp.API.Controllers
 {
+    /* Sempre que algum método for chamado irá Atualizar o lastActivity */
+    [ServiceFilter(typeof(LogUserActivity))]
+    
     [Authorize]
     [Route("api/[controller]")]
     [ApiController]
@@ -45,21 +49,21 @@ namespace DatingApp.API.Controllers
 
             return Ok(userToReturn);
         }
-        
-	        [HttpPut("{id}")]
-	        public async Task<IActionResult> UpdateUser(int id, UserForUpdateDto userForUpdateDto)
-	        {
-	            if (id != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
-	                return Unauthorized();
-	
-	            var userFromRepo = await _repo.GetUser(id);
-	
-	            _mapper.Map(userForUpdateDto, userFromRepo);
-	
-	            if (await _repo.SaveAll())
-	                return NoContent();
-	
-	            throw new Exception($"Updating user {id} failed on save");
-	        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateUser(int id, UserForUpdateDto userForUpdateDto)
+        {
+            if (id != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+                return Unauthorized();
+
+            var userFromRepo = await _repo.GetUser(id);
+
+            _mapper.Map(userForUpdateDto, userFromRepo);
+
+            if (await _repo.SaveAll())
+                return NoContent();
+
+            throw new Exception($"Updating user {id} failed on save");
+        }
     }
 }

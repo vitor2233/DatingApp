@@ -1,7 +1,7 @@
 <div class="container mt-4">
   <div class="row">
     <div class="col-sm-4">
-        <h1>Seu perfil</h1>
+      <h1>Seu perfil</h1>
     </div>
     <div class="col-sm-8">
       <div *ngIf="editForm.dirty" class="alert alert-warning">
@@ -24,15 +24,16 @@
           </div>
           <div>
             <strong>Visto por último:</strong>
-            <p>{{user.lastActive}}</p>
+            <p>{{user.lastActive | timeAgo}}</p>
           </div>
           <div>
             <strong>Membro desde:</strong>
-            <p>{{user.created}}</p>
+            <p>{{ user.created | date: 'dd/MM/yyyy' }}</p>
           </div>
         </div>
         <div class="card-footer">
-            <button [disabled]="!editForm.dirty" form="editForm" class="btn btn-success btn-block">Salvar alterações</button>
+          <button [disabled]="!editForm.dirty" form="editForm" class="btn btn-success btn-block">Salvar
+            alterações</button>
         </div>
       </div>
     </div>
@@ -41,33 +42,30 @@
         <tabset class="member-tabset">
           <tab heading="Editar perfil">
 
-              <form #editForm="ngForm" id="editForm" (ngSubmit)="updateUser()">
-                  <h4>Descrição</h4>
-                  <textarea class="form-control" name="introduction" rows="6" 
-                    [(ngModel)]="user.introduction"></textarea>
-                  <h4>Procurando </h4>
-                  <textarea class="form-control" name="lookingFor" rows="6" 
-                    [(ngModel)]="user.lookingFor"></textarea>
-                    <h4>Interesses</h4>
-                    <textarea class="form-control" name="interests" rows="6" 
-                      [(ngModel)]="user.interests"></textarea>
-                    <h4>Localização:</h4>
-                  <div class="form-inline">
-                    <label for="city" class="mr-1">Cidade:</label>
-                    <input type="text" class="form-control" name="city" [(ngModel)]="user.city">
-                    <label for="country" class=" ml-2 mr-1">País:</label>
-                    <input type="text" class="form-control" name="country" [(ngModel)]="user.country">
-                  </div>
+            <form #editForm="ngForm" id="editForm" (ngSubmit)="updateUser()">
+              <h4>Descrição</h4>
+              <textarea class="form-control" name="introduction" rows="6" [(ngModel)]="user.introduction"></textarea>
+              <h4>Procurando </h4>
+              <textarea class="form-control" name="lookingFor" rows="6" [(ngModel)]="user.lookingFor"></textarea>
+              <h4>Interesses</h4>
+              <textarea class="form-control" name="interests" rows="6" [(ngModel)]="user.interests"></textarea>
+              <h4>Localização:</h4>
+              <div class="form-inline">
+                <label for="city" class="mr-1">Cidade:</label>
+                <input type="text" class="form-control" name="city" [(ngModel)]="user.city">
+                <label for="country" class=" ml-2 mr-1">País:</label>
+                <input type="text" class="form-control" name="country" [(ngModel)]="user.country">
+              </div>
 
-              </form>
+            </form>
 
           </tab>
           <tab heading="Editar fotos">
-            <app-photo-editor [photos]="user.photos" 
-            (getMemberPhotoChange)="updateMainPhoto($event)"></app-photo-editor>
+            <app-photo-editor [photos]="user.photos" (getMemberPhotoChange)="updateMainPhoto($event)">
+            </app-photo-editor>
           </tab>
         </tabset>
       </div>
     </div>
   </div>
-</div> 
+</div>
