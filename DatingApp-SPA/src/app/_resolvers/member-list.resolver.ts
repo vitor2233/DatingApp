@@ -10,11 +10,14 @@ import { catchError } from 'rxjs/operators';
 /* Usado para tirar o safeNavigator, que aparece no console undefined */
 @Injectable()
 export class MemberListResolver implements Resolve<User[]> {
+    pageNumber = 1;
+    pageSize = 5;
+
     constructor(private userService: UserService, private router: Router, private alertify: AlertifyService) { }
 
     resolve(route: ActivatedRouteSnapshot): Observable<User[]> {
         /* .pipe apenas para pegar o erro */
-        return this.userService.getUsers().pipe(
+        return this.userService.getUsers(this.pageNumber, this.pageSize).pipe(
             catchError(error => {
                 this.alertify.error('Problema ao acessar data, tente novamente.');
                 this.router.navigate(['/home']);
