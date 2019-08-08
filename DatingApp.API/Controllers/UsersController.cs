@@ -15,7 +15,6 @@ namespace DatingApp.API.Controllers
 {
     /* Sempre que algum método for chamado irá Atualizar o lastActivity */
     [ServiceFilter(typeof(LogUserActivity))]
-
     [Authorize]
     [Route("api/[controller]")]
     [ApiController]
